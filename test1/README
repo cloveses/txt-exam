@@ -1,0 +1,11 @@
+系统要求：
+tornado3
+python3
+distribute
+mongodb
+pymongo
+mongoengine
+
+教师用户密码：默认为：kaoshi，修改密码请在ps.txt中重新输入
+
+考试题输入：参照testsrc下的模板文件格式输入

@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>分析试题</title>
+<link href="/static/reset.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+		#page-main {
+			padding-top: 0px;
+			height: 530px;
+	}
+	#psform {
+		width: 940px;
+		margin: 0 auto;
+		text-align:left;
+		padding-left: 10px;
+		padding-right: 10px;
+		background-color: #69C;
+	}
+</style>
+</head>
+<body>
+	<div id="page-main">
+		<div id="psform">
+			<h2>本次考试试题</h2>
+			{%for test in tests %}
+			<p>
+				{{str(test.tno)+'.'}}{{test.test_content}}　　答错人数：{{test.errors}}<br/>
+				{%if test.image_url%}
+				<img src="{{'/static/'+test.image_url}}"/><br/>
+				{%end%}
+				{{'A.'+test.item_a+'　　'}}{{'B.'+test.item_b+'　　'}}{{'C.'+test.item_c+'　　'}}{{'D.'+test.item_d+'　　'}}
+			</p>
+			{%end%}<br/>
+			{%for test in testf %}
+			<p>
+				{{str(test.tno)+'.'}}{{test.test_content}}　　答错人数：{{test.errors}}<br/>
+				{%if test.image_url%}
+				<img src="{{'/static/'+test.image_url}}"/>
+				{%end%}
+			</p>
+			{%end%}<br/>
+			{%for test in testy %}
+			<p>
+				{{str(test.tno)+'.'}}{{test.test_content}}　　答错人数：{{test.errors}}<br/>
+				{%if test.image_url%}
+				<img src="{{'/static/'+test.image_url}}"/>
+				{%end%}
+			</p>
+			{%end%}
+		</div>
+	</div>
+</body>
+</html>

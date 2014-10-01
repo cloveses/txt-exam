@@ -1,0 +1,15 @@
+body {
+		font-size: 24px;
+		background-color: #9CF;
+}
+
+#page-main {
+/*	width 960px;
+	position:relative;
+	left:50%;
+	margin-left:-480px;*/
+	width: 960px;
+	margin:0px auto;
+	background-color: #66F
+
+}
