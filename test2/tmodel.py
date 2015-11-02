@@ -62,7 +62,7 @@ class Test(DynamicDocument):
             all_test=[]
             for line in f:
                 all_test.append(line.strip('\n').split(' '))
-            #print(all_test)
+            print(all_test)
             type_count={'1':1,'2':1,'3':1}
             for item in all_test:
                 self.add_test(item,type_count)

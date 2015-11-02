@@ -173,9 +173,11 @@ class SubmitHandler(tornado.web.RequestHandler):
         sid=int(self.get_cookie('sid'))
         #print(',,,,,,,,,,,,,,,,,',sid)
         aTestInfo=TestInfo.objects(sid=sid).first()
-        score=0
+        score = 0
+        total = 1
         if aTestInfo:
             keys=aTestInfo.key_s
+            total = len(keys)
             for item in keys:
                 tt=Test.objects(test_type=item.test_type,tid=item.tid).first()
                 rkey=tt.key
@@ -189,13 +191,27 @@ class SubmitHandler(tornado.web.RequestHandler):
             stu.save()
         self.set_cookie('name','')
         self.clear_all_cookies()
-        self.write('考试结束，请离开考场！')
+        self.write(self.result(score,total))
 
     def is_right(self,rkey,skey):
         for item in rkey.split(','):
             if item==skey:
                 return True
         return False
+
+    def result(self,score,total):
+        res = int(score / total * 100)
+        if res >= 90:
+            info = "亲，你以优秀的成绩%d通过考试。: ) "  % res
+        elif res >=80:
+            info = "亲，你以优良的成绩%d通过考试。: ) "  % res
+        elif res >= 70:
+            info = "亲，你以良好的成绩%d通过考试。: ) "  % res
+        elif res >= 60:
+            info = "亲，你以及格的成绩%d通过考试。: ) "  % res
+        else :
+            info = "很遗憾，亲，没有通过本次考试，下次要努力哦。: ) "  % res
+        return info
 
 class adminHandler(tornado.web.RequestHandler):
     def get(self):
@@ -262,6 +278,7 @@ application=tornado.web.Application([
     ],**settings)
 
 if __name__=='__main__':
+    print('port:',8888)
     application.listen(8888) #,'192.168.3.123')
     tornado.ioloop.IOLoop.instance().start()
     # http_server = tornado.httpserver.HTTPServer(application)

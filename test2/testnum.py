@@ -1,1 +1,1 @@
-testnum=(7,21,9)
+testnum=(9,4,7)
